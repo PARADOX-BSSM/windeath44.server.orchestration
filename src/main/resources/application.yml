@@ -2,6 +2,7 @@ spring:
   application:
     name : windeath44.server.orchestration
 
+
 kafka:
   bootstrap-servers: ${KAFKA_SERVER}
   schema-registry-url: http://localhost:8081
@@ -14,4 +15,6 @@ kafka:
     key-serializer: org.apache.kafka.common.serialization.StringSerializer
     value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
 
+server:
+  port: 4449
 

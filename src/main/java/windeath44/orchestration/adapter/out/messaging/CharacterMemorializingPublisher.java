@@ -7,9 +7,13 @@ import windeath44.orchestration.domain.port.out.CharacterMemorializingEventPubli
 import windeath44.orchestration.global.kafka.KafkaProducer;
 
 @Component
-@RequiredArgsConstructor
 public class CharacterMemorializingPublisher implements CharacterMemorializingEventPublisher {
   private final KafkaProducer kafkaProducer;
+
+  public CharacterMemorializingPublisher(KafkaProducer kafkaProducer) {
+    this.kafkaProducer = kafkaProducer;
+  }
+
   @Override
   public void publish(MemorialAvroSchema memorialAvroSchema) {
     kafkaProducer.send("character-memorializing", memorialAvroSchema);
