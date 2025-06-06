@@ -17,4 +17,3 @@ kafka:
 
 server:
   port: 4449
-
