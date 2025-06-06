@@ -9,13 +9,14 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 public class KafkaProperties {
-  private String bootstrap_servers;
+  private String bootstrapServers;
+  private String schemaRegistryUrl;
+
   private Consumer consumer;
 
   @Getter
   @Setter
   public static class Consumer {
-    private String group_id;
     private String auto_offset_reset;
 
   }

@@ -1,0 +1,17 @@
+spring:
+  application:
+    name : windeath44.server.orchestration
+
+kafka:
+  bootstrap-servers: ${KAFKA_SERVER}
+  schema-registry-url: http://localhost:8081
+  consumer:
+    auto-offset-reset: earliest
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+    specific-avro-reader: true
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+
+
