@@ -10,6 +10,6 @@ public class AnimeService {
   private final CharacterMemorializingEventPublisher characterMemorializingEventPublisher;
 
   public void memorial() {
-    characterMemorializingEventPublisher.publish();
+    characterMemorializingEventPublisher.publish(null);
   }
 }
