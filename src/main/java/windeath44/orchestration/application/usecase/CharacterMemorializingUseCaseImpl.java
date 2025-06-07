@@ -16,4 +16,9 @@ public class CharacterMemorializingUseCaseImpl implements CharacterMemorializing
   public void execute(MemorialAvroSchema memorialAvroSchema) {
     animeService.memorial();
   }
+
+  @Override
+  public void compensate(MemorialAvroSchema memorialAvroSchema) {
+
+  }
 }

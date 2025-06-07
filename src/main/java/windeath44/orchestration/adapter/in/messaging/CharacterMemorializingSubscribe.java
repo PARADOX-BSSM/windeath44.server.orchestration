@@ -15,4 +15,5 @@ public class CharacterMemorializingSubscribe {
   public void listen(MemorialAvroSchema message) {
     characterMemorializingUseCase.execute(message);
   }
+
 }

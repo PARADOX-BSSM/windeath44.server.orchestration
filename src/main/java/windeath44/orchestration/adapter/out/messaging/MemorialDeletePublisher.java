@@ -1,4 +1,5 @@
 package windeath44.orchestration.adapter.out.messaging;
+
 import com.example.avro.MemorialAvroSchema;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -8,15 +9,15 @@ import windeath44.orchestration.global.kafka.KafkaProducer;
 
 @Component
 @RequiredArgsConstructor
-public class MemorialCreatePublisher implements MemorialEventPublisher {
+public class MemorialDeletePublisher implements MemorialEventPublisher {
   private final KafkaProducer kafkaProducer;
   @Override
   public void publish(MemorialAvroSchema memorialAvroSchema) {
-    kafkaProducer.send("memorial-creation", memorialAvroSchema);
+      kafkaProducer.send("memorial-deletion", memorialAvroSchema);
   }
 
   @Override
   public MemorialAction getAction() {
-    return MemorialAction.CREATE;
+    return MemorialAction.COMPENSATE;
   }
 }

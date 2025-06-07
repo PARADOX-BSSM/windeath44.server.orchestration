@@ -4,4 +4,5 @@ import com.example.avro.MemorialAvroSchema;
 
 public interface MemorialCreateUseCase {
   void execute(MemorialAvroSchema memorialAvroSchema);
+  void compensate(MemorialAvroSchema memorialAvroSchema);
 }
