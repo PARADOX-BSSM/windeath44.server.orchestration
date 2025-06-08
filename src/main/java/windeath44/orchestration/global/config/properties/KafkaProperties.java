@@ -17,7 +17,6 @@ public class KafkaProperties {
   @Getter
   public static class Consumer {
     private String autoOffsetReset;
-
   }
 
 }

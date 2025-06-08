@@ -17,7 +17,7 @@ public class MemorialCreateSubscribe {
     memorialCreateUseCase.execute(message);
   }
 
-  @KafkaListener(topics = "character-memorialzing-fail", groupId = "memorial")
+  @KafkaListener(topics = "character-memorializing-fail", groupId = "memorial")
   public void compensate(MemorialAvroSchema message) {
     memorialCreateUseCase.compensate(message);
   }
