@@ -11,7 +11,7 @@ import windeath44.orchestration.domain.port.in.CharacterMemorializingUseCase;
 public class CharacterMemorializingSubscribe {
   private final CharacterMemorializingUseCase characterMemorializingUseCase;
 
-  @KafkaListener(topics = "memorial-created", groupId = "memorial")
+  @KafkaListener(topics = "memorial-created-response", groupId = "memorial")
   public void listen(MemorialAvroSchema message) {
     characterMemorializingUseCase.execute(message);
   }

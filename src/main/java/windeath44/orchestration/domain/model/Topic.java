@@ -6,9 +6,9 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Topic {
-  CHARACTER_MEMORIALIZING("character-memorializing"),
-  MEMORIAL_CREATION("memorial-creation"),
-  MEMORIAL_DELETION("memorial-deletion")
+  CHARACTER_MEMORIALIZING("character-memorializing-request"),
+  MEMORIAL_CREATION("memorial-creation-request"),
+  MEMORIAL_DELETION("memorial-deletion-request")
   ;
 
   private final String topicName;
