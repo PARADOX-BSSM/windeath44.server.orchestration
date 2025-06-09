@@ -2,7 +2,7 @@ package windeath44.orchestration.adapter.out.messaging;
 
 import com.example.avro.MemorialAvroSchema;
 import org.springframework.stereotype.Component;
-import windeath44.orchestration.domain.model.Topic;
+import windeath44.orchestration.domain.model.type.Topic;
 import windeath44.orchestration.domain.port.out.CharacterEventPublisher;
 import windeath44.orchestration.global.kafka.KafkaProducer;
 

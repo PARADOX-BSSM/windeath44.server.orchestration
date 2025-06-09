@@ -12,7 +12,7 @@ import windeath44.orchestration.domain.port.in.MemorialCreateUseCase;
 public class MemorialCreateSubscribe {
   private final MemorialCreateUseCase memorialCreateUseCase;
 
-  @KafkaListener(topics = "memorial-application-approved-response", groupId = "memorial")
+  @KafkaListener(topics = "memorial-application-approved-request", groupId = "memorial")
   public void listen(MemorialAvroSchema message) {
     memorialCreateUseCase.execute(message);
   }

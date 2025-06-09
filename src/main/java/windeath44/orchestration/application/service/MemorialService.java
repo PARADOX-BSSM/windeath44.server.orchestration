@@ -4,7 +4,7 @@ import com.example.avro.MemorialAvroSchema;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
-import windeath44.orchestration.domain.model.MemorialAction;
+import windeath44.orchestration.domain.model.type.MemorialAction;
 import windeath44.orchestration.domain.port.out.MemorialEventPublisher;
 
 import java.util.Map;

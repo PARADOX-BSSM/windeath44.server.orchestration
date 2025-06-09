@@ -1,4 +1,4 @@
-package windeath44.orchestration.domain.model;
+package windeath44.orchestration.domain.model.type;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

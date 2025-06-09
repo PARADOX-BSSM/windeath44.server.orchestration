@@ -2,8 +2,8 @@ package windeath44.orchestration.adapter.out.messaging;
 import com.example.avro.MemorialAvroSchema;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import windeath44.orchestration.domain.model.MemorialAction;
-import windeath44.orchestration.domain.model.Topic;
+import windeath44.orchestration.domain.model.type.MemorialAction;
+import windeath44.orchestration.domain.model.type.Topic;
 import windeath44.orchestration.domain.port.out.MemorialEventPublisher;
 import windeath44.orchestration.global.kafka.KafkaProducer;
 
