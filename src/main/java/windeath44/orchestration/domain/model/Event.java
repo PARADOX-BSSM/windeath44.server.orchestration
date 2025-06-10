@@ -3,6 +3,7 @@ package windeath44.orchestration.domain.model;
 import com.example.avro.MemorialAvroSchema;
 import jakarta.persistence.EntityListeners;
 import lombok.Builder;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
@@ -13,7 +14,7 @@ import windeath44.orchestration.domain.model.type.EventType;
 import java.time.LocalDateTime;
 
 @Document(collection = "events")
-@Builder
+@SuperBuilder
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Event<T> {
   @Id

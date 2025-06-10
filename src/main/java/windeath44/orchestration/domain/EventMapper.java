@@ -1,14 +1,53 @@
 package windeath44.orchestration.domain;
 
+import com.example.avro.MemorialApplicationAvroSchema;
 import com.example.avro.MemorialAvroSchema;
 import org.springframework.stereotype.Component;
 import windeath44.orchestration.domain.model.Event;
+import windeath44.orchestration.domain.model.MemorialApplicationEvent;
 import windeath44.orchestration.domain.model.MemorialEvent;
+import windeath44.orchestration.domain.model.type.EventType;
 
 @Component
 public class EventMapper {
   public MemorialEvent memorialEvent(MemorialAvroSchema memorialAvroSchema) {
-    return new MemorialEvent();
+    String aggregateId = "memorial-" + memorialAvroSchema.getMemorialId();
+    String aggregateType = "MEMORIAL";
+    EventType eventType = EventType.MEMORIAL_CREATED;
+
+    return MemorialEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(memorialAvroSchema)
+            .build();
   }
+
+  public MemorialEvent memorialCompensate(MemorialAvroSchema memorialAvroSchema) {
+    String aggregateId = "memorial-" + memorialAvroSchema.getMemorialId();
+    String aggregateType = "MEMORIAL";
+    EventType eventType = EventType.MEMORIAL_DELETED;
+
+    return MemorialEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(memorialAvroSchema)
+            .build();
+  }
+
+  public MemorialApplicationEvent memorialApplication(MemorialApplicationAvroSchema memorialApplicationAvroSchema) {
+    String aggregateId = "memorial-application-" + memorialApplicationAvroSchema.getMemorialApplicationId();
+    String aggregateType = "MEMORIAL_APPLICATION";
+    EventType eventType = EventType.MEMORIAL_APPLICATION_APPROVED;
+
+    return MemorialApplicationEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(memorialApplicationAvroSchema)
+            .build();
+  }
+
 
 }

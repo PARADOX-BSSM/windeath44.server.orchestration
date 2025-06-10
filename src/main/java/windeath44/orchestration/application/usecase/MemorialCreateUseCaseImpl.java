@@ -31,5 +31,7 @@ public class MemorialCreateUseCaseImpl implements MemorialCreateUseCase {
   @Override
   public void compensate(MemorialAvroSchema memorialAvroSchema) {
     memorialService.execute(MemorialAction.COMPENSATE, memorialAvroSchema);
+    MemorialEvent memorialEvent = eventMapper.memorialCompensate(memorialAvroSchema);
+    eventRepository.save(memorialEvent);
   }
 }
