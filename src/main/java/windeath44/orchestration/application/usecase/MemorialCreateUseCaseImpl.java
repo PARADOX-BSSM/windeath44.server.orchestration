@@ -1,7 +1,6 @@
 package windeath44.orchestration.application.usecase;
 
 import com.example.avro.MemorialApplicationAvroSchema;
-import com.example.avro.MemorialAvroSchema;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,16 +25,6 @@ public class MemorialCreateUseCaseImpl implements MemorialCreateUseCase {
   public void execute(MemorialApplicationAvroSchema memorialApplicationAvroSchema) {
     memorialService.execute(MemorialAction.CREATE, memorialApplicationAvroSchema);
     MemorialApplicationEvent memorialEvent = eventMapper.memorialApplicationEvent(memorialApplicationAvroSchema);
-    eventRepository.save(memorialEvent);
-  }
-
-
-
-  // 보상 트랜잭션 ( 기존에 create 했던 과정을 돌이켜야함 )
-  @Override
-  public void compensate(MemorialAvroSchema memorialAvroSchema) {
-    memorialService.execute(MemorialAction.COMPENSATE, memorialAvroSchema);
-    MemorialEvent memorialEvent = eventMapper.memorialCompensateEvent(memorialAvroSchema);
     eventRepository.save(memorialEvent);
   }
 }

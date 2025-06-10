@@ -1,13 +1,11 @@
 package windeath44.orchestration.application.usecase;
 
-import com.example.avro.MemorialApplicationAvroSchema;
 import com.example.avro.MemorialAvroSchema;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import windeath44.orchestration.application.service.AnimeService;
 import windeath44.orchestration.domain.EventMapper;
-import windeath44.orchestration.domain.model.MemorialApplicationEvent;
 import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.port.in.CharacterMemorializingUseCase;
 import windeath44.orchestration.domain.repository.EventRepository;
@@ -28,8 +26,4 @@ public class CharacterMemorializingUseCaseImpl implements CharacterMemorializing
     eventRepository.save(memorialEvent);
   }
 
-  @Override
-  public void compensate(MemorialApplicationAvroSchema memorialApplicationAvroSchema) {
-
-  }
 }

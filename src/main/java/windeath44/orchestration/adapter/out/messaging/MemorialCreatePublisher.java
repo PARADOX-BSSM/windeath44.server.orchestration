@@ -1,6 +1,5 @@
 package windeath44.orchestration.adapter.out.messaging;
-import com.example.avro.MemorialApplicationAvroSchema;
-import com.example.avro.MemorialAvroSchema;
+
 import lombok.RequiredArgsConstructor;
 import org.apache.avro.specific.SpecificRecord;
 import org.springframework.stereotype.Component;
