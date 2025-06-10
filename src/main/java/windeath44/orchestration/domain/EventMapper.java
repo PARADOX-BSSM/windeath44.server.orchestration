@@ -3,7 +3,6 @@ package windeath44.orchestration.domain;
 import com.example.avro.MemorialApplicationAvroSchema;
 import com.example.avro.MemorialAvroSchema;
 import org.springframework.stereotype.Component;
-import windeath44.orchestration.domain.model.Event;
 import windeath44.orchestration.domain.model.MemorialApplicationEvent;
 import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.model.type.EventType;
@@ -23,7 +22,7 @@ public class EventMapper {
             .build();
   }
 
-  public MemorialEvent memorialCompensate(MemorialAvroSchema memorialAvroSchema) {
+  public MemorialEvent memorialCompensateEvent(MemorialAvroSchema memorialAvroSchema) {
     String aggregateId = "memorial-" + memorialAvroSchema.getMemorialId();
     String aggregateType = "MEMORIAL";
     EventType eventType = EventType.MEMORIAL_DELETED;
@@ -36,7 +35,7 @@ public class EventMapper {
             .build();
   }
 
-  public MemorialApplicationEvent memorialApplication(MemorialApplicationAvroSchema memorialApplicationAvroSchema) {
+  public MemorialApplicationEvent memorialApplicationEvent(MemorialApplicationAvroSchema memorialApplicationAvroSchema) {
     String aggregateId = "memorial-application-" + memorialApplicationAvroSchema.getMemorialApplicationId();
     String aggregateType = "MEMORIAL_APPLICATION";
     EventType eventType = EventType.MEMORIAL_APPLICATION_APPROVED;

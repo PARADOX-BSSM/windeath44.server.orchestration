@@ -22,12 +22,11 @@ public class CharacterMemorializingUseCaseImpl implements CharacterMemorializing
   // 오케스트레이션 서버에서 kafka로 anime 서버의 캐릭터 상태를 'NOT_MEMORIALIZING' -> 'MEMORIALIZING'으로 변환
   @Override
   @Transactional
-  public void execute(MemorialApplicationAvroSchema memorialApplicationAvroSchema) {
+  public void execute(MemorialAvroSchema memorialAvroSchema) {
     animeService.memorial();
-    MemorialApplicationEvent memorialApplicationEvent = eventMapper.memorialApplication(memorialApplicationAvroSchema);
-    eventRepository.save(memorialApplicationEvent);
+    MemorialEvent memorialEvent = eventMapper.memorialEvent(memorialAvroSchema);
+    eventRepository.save(memorialEvent);
   }
-
 
   @Override
   public void compensate(MemorialApplicationAvroSchema memorialApplicationAvroSchema) {

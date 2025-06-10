@@ -1,5 +1,6 @@
 package windeath44.orchestration.adapter.in.messaging;
 
+import com.example.avro.MemorialApplicationAvroSchema;
 import com.example.avro.MemorialAvroSchema;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -12,7 +13,7 @@ public class MemorialCreateSubscribe {
   private final MemorialCreateUseCase memorialCreateUseCase;
 
   @KafkaListener(topics = "memorial-application-approved-request", groupId = "memorial")
-  public void listen(MemorialAvroSchema message) {
+  public void listen(MemorialApplicationAvroSchema message) {
     memorialCreateUseCase.execute(message);
   }
 

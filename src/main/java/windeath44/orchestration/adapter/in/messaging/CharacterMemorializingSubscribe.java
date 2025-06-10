@@ -1,5 +1,6 @@
 package windeath44.orchestration.adapter.in.messaging;
 
+import com.example.avro.MemorialApplicationAvroSchema;
 import com.example.avro.MemorialAvroSchema;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
