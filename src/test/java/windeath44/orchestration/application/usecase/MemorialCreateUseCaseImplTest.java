@@ -1,22 +1,25 @@
 package windeath44.orchestration.application.usecase;
 
-import com.example.avro.MemorialAvroSchema;
+import com.example.avro.MemorialApplicationAvroSchema;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import windeath44.orchestration.application.service.MemorialService;
-import windeath44.orchestration.domain.EventMapper;
-import windeath44.orchestration.domain.model.MemorialEvent;
+import windeath44.orchestration.domain.mapper.EventMapper;
+import windeath44.orchestration.domain.model.MemorialApplicationEvent;
 import windeath44.orchestration.domain.model.type.MemorialAction;
 import windeath44.orchestration.domain.repository.EventRepository;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class MemorialCreateUseCaseImplTest {
+class MemorialCreateUseCaseImplTest {
 
     @Mock
     private MemorialService memorialService;
@@ -30,53 +33,41 @@ public class MemorialCreateUseCaseImplTest {
     @InjectMocks
     private MemorialCreateUseCaseImpl memorialCreateUseCase;
 
-    private MemorialAvroSchema memorialAvroSchema;
-    private MemorialEvent memorialEvent;
-    private MemorialEvent memorialCompensateEvent;
+    private MemorialApplicationAvroSchema memorialApplicationAvroSchema;
+    private MemorialApplicationEvent memorialApplicationEvent;
 
     @BeforeEach
     void setUp() {
-        // Create test data
-        memorialAvroSchema = MemorialAvroSchema.newBuilder()
-                .setMemorialId("test-id")
+        // Setup test data
+        memorialApplicationAvroSchema = MemorialApplicationAvroSchema.newBuilder()
+                .setMemorialApplicationId("application-123")
+                .setApplicantId("applicant-123")
+                .setApproverId("approver-123")
+                .setContent("Test Application Content")
+                .setCharacterId(123L)
                 .build();
 
-        memorialEvent = MemorialEvent.builder()
-                .aggregateId("memorial-test-id")
-                .aggregateType("MEMORIAL")
-                .build();
-
-        memorialCompensateEvent = MemorialEvent.builder()
-                .aggregateId("memorial-test-id")
-                .aggregateType("MEMORIAL")
+        memorialApplicationEvent = MemorialApplicationEvent.builder()
+                .aggregateId("memorial-application-application-123")
+                .aggregateType("MEMORIAL_APPLICATION")
+                .eventData(memorialApplicationAvroSchema)
                 .build();
     }
 
     @Test
-    void execute_ShouldCallMemorialServiceAndSaveEvent() {
-        // Arrange
-        when(eventMapper.memorialEvent(memorialAvroSchema)).thenReturn(memorialEvent);
+    @DisplayName("추모관 생성 요청 테스트")
+    void executeTest() {
+        // Given
+        doNothing().when(memorialService).execute(eq(MemorialAction.CREATE), any(MemorialApplicationAvroSchema.class));
+        when(eventMapper.memorialApplicationEvent(any(MemorialApplicationAvroSchema.class))).thenReturn(memorialApplicationEvent);
+        when(eventRepository.save(any(MemorialApplicationEvent.class))).thenReturn(memorialApplicationEvent);
 
-        // Act
-        memorialCreateUseCase.execute(memorialAvroSchema);
+        // When
+        memorialCreateUseCase.execute(memorialApplicationAvroSchema);
 
-        // Assert
-        verify(memorialService, times(1)).execute(MemorialAction.CREATE, memorialAvroSchema);
-        verify(eventMapper, times(1)).memorialEvent(memorialAvroSchema);
-        verify(eventRepository, times(1)).save(memorialEvent);
-    }
-
-    @Test
-    void compensate_ShouldCallMemorialServiceAndSaveCompensateEvent() {
-        // Arrange
-        when(eventMapper.memorialCompensateEvent(memorialAvroSchema)).thenReturn(memorialCompensateEvent);
-
-        // Act
-        memorialCreateUseCase.compensate(memorialAvroSchema);
-
-        // Assert
-        verify(memorialService, times(1)).execute(MemorialAction.COMPENSATE, memorialAvroSchema);
-        verify(eventMapper, times(1)).memorialCompensateEvent(memorialAvroSchema);
-        verify(eventRepository, times(1)).save(memorialCompensateEvent);
+        // Then
+        verify(memorialService, times(1)).execute(MemorialAction.CREATE, memorialApplicationAvroSchema);
+        verify(eventMapper, times(1)).memorialApplicationEvent(memorialApplicationAvroSchema);
+        verify(eventRepository, times(1)).save(memorialApplicationEvent);
     }
 }

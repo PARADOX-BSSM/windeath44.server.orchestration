@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import windeath44.orchestration.application.service.AnimeService;
-import windeath44.orchestration.domain.EventMapper;
+import windeath44.orchestration.domain.mapper.EventMapper;
 import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.port.in.CharacterMemorializingUseCase;
 import windeath44.orchestration.domain.repository.EventRepository;

@@ -1,4 +1,4 @@
-package windeath44.orchestration.domain;
+package windeath44.orchestration.domain.mapper;
 
 import com.example.avro.CharacterAvroSchema;
 import com.example.avro.MemorialApplicationAvroSchema;
