@@ -17,5 +17,6 @@ public class CharacterMemorializedUseCaseImpl implements CharacterMemorializedUs
   @Override
   public void execute(CharacterAvroSchema characterAvroSchema) {
     CharacterEvent characterEvent = eventMapper.characterEvent(characterAvroSchema);
+    eventRepository.save(characterEvent);
   }
 }

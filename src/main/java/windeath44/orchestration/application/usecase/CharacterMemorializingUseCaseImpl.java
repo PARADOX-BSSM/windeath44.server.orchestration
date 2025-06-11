@@ -25,5 +25,4 @@ public class CharacterMemorializingUseCaseImpl implements CharacterMemorializing
     MemorialEvent memorialEvent = eventMapper.memorialEvent(memorialAvroSchema);
     eventRepository.save(memorialEvent);
   }
-
 }
