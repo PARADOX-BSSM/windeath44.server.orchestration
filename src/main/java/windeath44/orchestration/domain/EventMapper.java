@@ -1,8 +1,10 @@
 package windeath44.orchestration.domain;
 
+import com.example.avro.CharacterAvroSchema;
 import com.example.avro.MemorialApplicationAvroSchema;
 import com.example.avro.MemorialAvroSchema;
 import org.springframework.stereotype.Component;
+import windeath44.orchestration.domain.model.CharacterEvent;
 import windeath44.orchestration.domain.model.MemorialApplicationEvent;
 import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.model.type.EventType;
@@ -49,4 +51,16 @@ public class EventMapper {
   }
 
 
+  public CharacterEvent characterEvent(CharacterAvroSchema characterAvroSchema) {
+    String aggregateId = "character-" + characterAvroSchema.getCharacterId();
+    String aggregateType = "ANIME";
+    EventType eventType = EventType.CHARACTER_MEMORIALIZED;
+
+    return CharacterEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(characterAvroSchema)
+            .build();
+  }
 }
