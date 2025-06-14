@@ -1,5 +1,6 @@
 package windeath44.orchestration.adapter.in.messaging;
 
+import com.example.avro.CharacterAvroSchema;
 import com.example.avro.MemorialAvroSchema;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -12,7 +13,7 @@ public class MemorialDeleteSubscribe  {
   private final MemorialDeleteUseCase memorialDeleteUseCase;
 
   @KafkaListener(topics = "character-memorializing-fail-response", groupId = "memorial")
-  public void compensate(MemorialAvroSchema message) {
+  public void compensate(CharacterAvroSchema message) {
     memorialDeleteUseCase.execute(message);
   }
 }

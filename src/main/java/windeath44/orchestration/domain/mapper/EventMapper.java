@@ -63,4 +63,18 @@ public class EventMapper {
             .eventData(characterAvroSchema)
             .build();
   }
+
+  public CharacterEvent characterCompensateEvent(CharacterAvroSchema characterAvroSchema) {
+    String aggregateId = "character-" + characterAvroSchema.getCharacterId();
+    String aggregateType = "ANIME";
+
+    EventType eventType = EventType.CHARACTER_MEMORIALIZED_FAILED;
+
+    return CharacterEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(characterAvroSchema)
+            .build();
+  }
 }

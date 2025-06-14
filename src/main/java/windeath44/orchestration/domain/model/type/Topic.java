@@ -9,6 +9,7 @@ public enum Topic {
   CHARACTER_MEMORIALIZING("character-memorializing-request"),
   MEMORIAL_CREATION("memorial-creation-request"),
   MEMORIAL_DELETION("memorial-deletion-request"),
+  MEMORIAL_APPLICATION_CANCEL("memorial-application-cancel-request"),
   MEMORIAL_APPLICATION_APPROVED("memorial-application-approved-response")
   ;
 
