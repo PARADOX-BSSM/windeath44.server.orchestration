@@ -40,7 +40,20 @@ public class EventMapper {
   public MemorialApplicationEvent memorialApplicationEvent(MemorialApplicationAvroSchema memorialApplicationAvroSchema) {
     String aggregateId = "memorial-application-" + memorialApplicationAvroSchema.getMemorialApplicationId();
     String aggregateType = "MEMORIAL_APPLICATION";
-    EventType eventType = EventType.MEMORIAL_APPLICATION_APPROVED;
+    EventType eventType = EventType.MEMORIAL_APPLICATION_APPROVED_REQUEST;
+
+    return MemorialApplicationEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(memorialApplicationAvroSchema)
+            .build();
+  }
+
+  public MemorialApplicationEvent memorialApplicationCompensateEvent(MemorialApplicationAvroSchema memorialAvroSchema) {
+    String aggregateId = "memorial-application-" + memorialApplicationAvroSchema.getMemorialApplicationId();
+    String aggregateType = "MEMORIAL_APPLICATION";
+    EventType eventType = EventType.MEMORIAL_APPLICATION_CANCELLED;
 
     return MemorialApplicationEvent.builder()
             .aggregateId(aggregateId)
@@ -77,4 +90,5 @@ public class EventMapper {
             .eventData(characterAvroSchema)
             .build();
   }
+
 }
