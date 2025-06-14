@@ -11,7 +11,7 @@ import windeath44.orchestration.domain.port.in.MemorialApplicationCancelUseCase;
 public class MemorialApplicationCancelSubscribe {
   private final MemorialApplicationCancelUseCase memorialApplicationCancelUseCase;
 
-  @KafkaListener(topics="memorial-delection-response", groupId = "memorial")
+  @KafkaListener(topics={"memorial-delection-response", "memorial-creation-fail-response"}, groupId = "memorial")
   public void listen(MemorialAvroSchema message) {
     memorialApplicationCancelUseCase.execute(message);
   }
