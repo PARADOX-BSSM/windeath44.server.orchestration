@@ -8,8 +8,10 @@ import lombok.Getter;
 public enum Topic {
   CHARACTER_MEMORIALIZING("character-memorializing-request"),
   MEMORIAL_CREATION("memorial-creation-request"),
-  MEMORIAL_DELETION("memorial-deletion-request")
+  MEMORIAL_DELETION("memorial-deletion-request"),
+  MEMORIAL_APPLICATION_APPROVED("memorial-application-approved-response")
   ;
+
 
   private final String topicName;
 }
