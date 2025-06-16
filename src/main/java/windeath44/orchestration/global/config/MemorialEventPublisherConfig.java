@@ -2,7 +2,7 @@ package windeath44.orchestration.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import windeath44.orchestration.domain.model.MemorialAction;
+import windeath44.orchestration.domain.model.type.MemorialAction;
 import windeath44.orchestration.domain.port.out.MemorialEventPublisher;
 
 import java.util.List;

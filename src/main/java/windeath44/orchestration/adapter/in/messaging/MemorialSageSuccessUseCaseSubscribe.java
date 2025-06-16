@@ -1,20 +1,18 @@
 package windeath44.orchestration.adapter.in.messaging;
 
 import com.example.avro.MemorialApplicationAvroSchema;
-import com.example.avro.MemorialAvroSchema;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
-import windeath44.orchestration.domain.port.in.MemorialCreateUseCase;
+import windeath44.orchestration.domain.port.in.MemorialSageSuccessUseCase;
 
 @Component
 @RequiredArgsConstructor
-public class MemorialCreateSubscribe {
-  private final MemorialCreateUseCase memorialCreateUseCase;
+public class MemorialSageSuccessUseCaseSubscribe {
+  private final MemorialSageSuccessUseCase memorialSageSuccessUseCase;
 
-  @KafkaListener(topics = "memorial-application-approved-request", groupId = "memorial")
+  @KafkaListener(topics = "memorial-creation-orchestration-complete", groupId = "memorial")
   public void listen(MemorialApplicationAvroSchema message) {
-    memorialCreateUseCase.execute(message);
+    memorialSageSuccessUseCase.execute(message);
   }
-
 }
