@@ -50,7 +50,7 @@ public class EventMapper {
             .build();
   }
 
-  public MemorialApplicationEvent memorialApplicationCompensateEvent(MemorialApplicationAvroSchema memorialAvroSchema) {
+  public MemorialApplicationEvent memorialApplicationCompensateEvent(MemorialApplicationAvroSchema memorialApplicationAvroSchema) {
     String aggregateId = "memorial-application-" + memorialApplicationAvroSchema.getMemorialApplicationId();
     String aggregateType = "MEMORIAL_APPLICATION";
     EventType eventType = EventType.MEMORIAL_APPLICATION_CANCELLED;
