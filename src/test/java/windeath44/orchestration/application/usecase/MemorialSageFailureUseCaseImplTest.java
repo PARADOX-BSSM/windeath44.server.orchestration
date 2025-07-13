@@ -25,7 +25,7 @@ class MemorialSageFailureUseCaseImplTest {
     private EventRepository eventRepository;
 
     @InjectMocks
-    private MemorialSageFailureUseCaseImpl memorialSageFailureUseCase;
+    private MemorialSagaFailureUseCaseImpl memorialSageFailureUseCase;
 
     private MemorialApplicationAvroSchema memorialApplicationAvroSchema;
     private MemorialApplicationEvent memorialApplicationEvent;
