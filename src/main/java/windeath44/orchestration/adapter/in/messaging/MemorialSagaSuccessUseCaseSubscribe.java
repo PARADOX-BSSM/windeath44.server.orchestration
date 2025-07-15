@@ -4,15 +4,15 @@ import com.example.avro.MemorialApplicationAvroSchema;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
-import windeath44.orchestration.domain.port.in.MemorialSageFailureUseCase;
+import windeath44.orchestration.domain.port.in.MemorialSagaSuccessUseCase;
 
 @Component
 @RequiredArgsConstructor
-public class MemorialSageFailureSubscribe {
-  private final MemorialSageFailureUseCase memorialSageFailureUseCase;
+public class MemorialSagaSuccessUseCaseSubscribe {
+  private final MemorialSagaSuccessUseCase memorialSageSuccessUseCase;
 
-  @KafkaListener(topics="memorial-applicationb-cancel-response", groupId = "memorial")
+  @KafkaListener(topics = "memorial-creation-orchestration-complete", groupId = "memorial")
   public void listen(MemorialApplicationAvroSchema message) {
-    memorialSageFailureUseCase.execute(message);
+    memorialSageSuccessUseCase.execute(message);
   }
 }
