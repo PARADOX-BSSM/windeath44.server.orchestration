@@ -3,11 +3,11 @@ spring:
     name : windeath44.server.orchestration
   data:
     mongodb:
-      uri: ${MONGODB_URI:mongodb://localhost:27017/windeath44}
+      uri: mongodb://${MONGODB_URL}
 
 kafka:
-  bootstrap-servers: ${KAFKA_SERVER:localhost:9092}
-  schema-registry-url: ${SCHEMA_REGISTRY_URL:http://localhost:8081}
+  bootstrap-servers: ${KAFKA_URL}
+  schema-registry-url: ${SCHEMA_REGISTRY_URL}
   consumer:
     auto-offset-reset: earliest
     key-deserializer: org.apache.kafka.common.serialization.StringDeserializer

@@ -10,7 +10,15 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', "$buildDir/generated/avro"]
+        }
     }
 }
 
@@ -38,7 +46,6 @@ dependencies {
 
     implementation 'org.apache.avro:avro:1.11.1'
     implementation 'io.confluent:kafka-avro-serializer:7.4.0'
-
 
 }
 
