@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @SuperBuilder
 public abstract class Event<T> {
   @Id
-  private Long eventId;
+  private String eventId;
   private String aggregateId;
   private String aggregateType;
   private EventType eventType;
