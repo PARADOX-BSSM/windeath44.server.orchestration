@@ -21,7 +21,7 @@ public class CharacterMemorializingUseCaseImpl implements CharacterMemorializing
   @Override
   @Transactional
   public void execute(MemorialAvroSchema memorialAvroSchema) {
-    animeService.memorial();
+    animeService.memorial(memorialAvroSchema);
     MemorialEvent memorialEvent = eventMapper.memorialEvent(memorialAvroSchema);
     eventRepository.save(memorialEvent);
   }

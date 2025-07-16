@@ -1,5 +1,6 @@
 package windeath44.orchestration.application.service;
 
+import com.example.avro.MemorialAvroSchema;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import windeath44.orchestration.domain.port.out.CharacterEventPublisher;
@@ -9,7 +10,7 @@ import windeath44.orchestration.domain.port.out.CharacterEventPublisher;
 public class AnimeService {
   private final CharacterEventPublisher characterMemorializingEventPublisher;
 
-  public void memorial() {
-    characterMemorializingEventPublisher.publish(null);
+  public void memorial(MemorialAvroSchema memorialAvroSchema) {
+    characterMemorializingEventPublisher.publish(memorialAvroSchema);
   }
 }
