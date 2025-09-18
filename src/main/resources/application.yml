@@ -4,8 +4,22 @@ spring:
   data:
     mongodb:
       uri: mongodb://${MONGODB_URL}
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
-  kafka:
+kafka:
+  bootstrap-servers: ${KAFKA_URL}
+  schema-registry-url: ${SCHEMA_REGISTRY_URL}
+  consumer:
+    auto-offset-reset: earliest
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+    specific-avro-reader: true
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
 
     # ===== 외부 접속을 위한 설정 (필요시 주석 해제) =====
     bootstrap-servers: ${KAFKA_URL}
