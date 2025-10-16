@@ -1,9 +1,11 @@
 package windeath44.orchestration.domain.mapper;
 
+import com.chatbot.events.ChatEvent;
 import com.example.avro.CharacterAvroSchema;
 import com.example.avro.MemorialApplicationAvroSchema;
 import com.example.avro.MemorialAvroSchema;
 import org.springframework.stereotype.Component;
+import windeath44.orchestration.domain.model.ChatbotChatEvent;
 import windeath44.orchestration.domain.model.CharacterEvent;
 import windeath44.orchestration.domain.model.MemorialApplicationEvent;
 import windeath44.orchestration.domain.model.MemorialEvent;
@@ -63,5 +65,43 @@ public class EventMapper {
             .build();
   }
 
+  public ChatbotChatEvent chatEvent(ChatEvent chatEvent) {
+    String aggregateId = "chatbot-chat-" + chatEvent.getChatbotId() + "-" + chatEvent.getSessionId();
+    String aggregateType = "CHATBOT_CHAT";
+    EventType eventType = EventType.CHATBOT_CHAT_REQUEST;
+
+    return ChatbotChatEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(chatEvent)
+            .build();
+  }
+
+  public ChatbotChatEvent chatEventSuccessResponse(ChatEvent chatEvent) {
+    String aggregateId = "chatbot-chat-" + chatEvent.getChatbotId() + "-" + chatEvent.getSessionId();
+    String aggregateType = "CHATBOT_CHAT";
+    EventType eventType = EventType.REMAIN_TOKEN_DECREASE_RESPONSE;
+
+    return ChatbotChatEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(chatEvent)
+            .build();
+  }
+
+  public ChatbotChatEvent chatEventFailResponse(ChatEvent chatEvent) {
+    String aggregateId = "chatbot-chat-" + chatEvent.getChatbotId() + "-" + chatEvent.getSessionId();
+    String aggregateType = "CHATBOT_CHAT";
+    EventType eventType = EventType.REMAIN_TOKEN_DECREASE_FAIL_RESPONSE;
+
+    return ChatbotChatEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(chatEvent)
+            .build();
+  }
 
 }
