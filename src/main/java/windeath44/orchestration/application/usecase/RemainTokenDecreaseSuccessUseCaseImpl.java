@@ -1,10 +1,10 @@
 package windeath44.orchestration.application.usecase;
 
-import com.chatbot.events.ChatEvent;
+import com.example.user.avro.RemainTokenDecreaseResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import windeath44.orchestration.domain.mapper.EventMapper;
-import windeath44.orchestration.domain.model.ChatbotChatEvent;
+import windeath44.orchestration.domain.model.RemainTokenDecreaseEvent;
 import windeath44.orchestration.domain.port.in.RemainTokenDecreaseSuccessUseCase;
 import windeath44.orchestration.domain.repository.EventRepository;
 
@@ -15,8 +15,8 @@ public class RemainTokenDecreaseSuccessUseCaseImpl implements RemainTokenDecreas
     private final EventMapper eventMapper;
 
     @Override
-    public void execute(ChatEvent chatEvent) {
-        ChatbotChatEvent chatbotChatEvent = eventMapper.chatEventSuccessResponse(chatEvent);
-        eventRepository.save(chatbotChatEvent);
+    public void execute(RemainTokenDecreaseResponse remainTokenDecreaseResponse) {
+        RemainTokenDecreaseEvent remainTokenDecreaseEvent = eventMapper.remainTokenDecreaseSuccessResponse(remainTokenDecreaseResponse);
+        eventRepository.save(remainTokenDecreaseEvent);
     }
 }

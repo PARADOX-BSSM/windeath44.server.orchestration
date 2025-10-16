@@ -5,10 +5,12 @@ import com.example.avro.CharacterAvroSchema;
 import com.example.avro.MemorialApplicationAvroSchema;
 import com.example.avro.MemorialAvroSchema;
 import org.springframework.stereotype.Component;
+import com.example.user.avro.RemainTokenDecreaseResponse;
 import windeath44.orchestration.domain.model.ChatbotChatEvent;
 import windeath44.orchestration.domain.model.CharacterEvent;
 import windeath44.orchestration.domain.model.MemorialApplicationEvent;
 import windeath44.orchestration.domain.model.MemorialEvent;
+import windeath44.orchestration.domain.model.RemainTokenDecreaseEvent;
 import windeath44.orchestration.domain.model.type.EventType;
 
 @Component
@@ -101,6 +103,32 @@ public class EventMapper {
             .aggregateType(aggregateType)
             .eventType(eventType)
             .eventData(chatEvent)
+            .build();
+  }
+
+  public RemainTokenDecreaseEvent remainTokenDecreaseSuccessResponse(RemainTokenDecreaseResponse remainTokenDecreaseResponse) {
+    String aggregateId = "remain-token-decrease-" + remainTokenDecreaseResponse.getUserId();
+    String aggregateType = "REMAIN_TOKEN_DECREASE";
+    EventType eventType = EventType.REMAIN_TOKEN_DECREASE_RESPONSE;
+
+    return RemainTokenDecreaseEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(remainTokenDecreaseResponse)
+            .build();
+  }
+
+  public RemainTokenDecreaseEvent remainTokenDecreaseFailResponse(RemainTokenDecreaseResponse remainTokenDecreaseResponse) {
+    String aggregateId = "remain-token-decrease-" + remainTokenDecreaseResponse.getUserId();
+    String aggregateType = "REMAIN_TOKEN_DECREASE";
+    EventType eventType = EventType.REMAIN_TOKEN_DECREASE_FAIL_RESPONSE;
+
+    return RemainTokenDecreaseEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(remainTokenDecreaseResponse)
             .build();
   }
 

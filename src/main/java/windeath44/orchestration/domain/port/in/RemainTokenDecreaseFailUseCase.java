@@ -1,7 +1,7 @@
 package windeath44.orchestration.domain.port.in;
 
-import com.chatbot.events.ChatEvent;
+import com.example.user.avro.RemainTokenDecreaseResponse;
 
 public interface RemainTokenDecreaseFailUseCase {
-    void execute(ChatEvent chatEvent);
+    void execute(RemainTokenDecreaseResponse remainTokenDecreaseResponse);
 }

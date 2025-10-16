@@ -1,6 +1,7 @@
 package windeath44.orchestration.adapter.in.messaging;
 
 import com.chatbot.events.ChatEvent;
+import com.example.user.avro.RemainTokenDecreaseResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ public class RemainTokenDecreaseSuccessSubscribe {
     private final RemainTokenDecreaseSuccessUseCase remainTokenDecreaseSuccessUseCase;
 
     @KafkaListener(topics = "remain-token-decrease-response", groupId = "chatbot")
-    public void listen(ChatEvent chatEvent) {
-        remainTokenDecreaseSuccessUseCase.execute(chatEvent);
+    public void listen(RemainTokenDecreaseResponse chatbotChatEvent) {
+        remainTokenDecreaseSuccessUseCase.execute(chatbotChatEvent);
     }
 }
