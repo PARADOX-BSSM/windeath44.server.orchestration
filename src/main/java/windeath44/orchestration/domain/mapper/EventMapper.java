@@ -5,11 +5,13 @@ import com.example.avro.MemorialApplicationAvroSchema;
 import com.example.avro.MemorialAvroSchema;
 import org.springframework.stereotype.Component;
 import com.example.user.avro.RemainTokenDecreaseResponse;
+import com.example.user.avro.RemainTokenIncreaseResponse;
 import windeath44.orchestration.domain.model.ChatbotChatEvent;
 import windeath44.orchestration.domain.model.MemorialApplicationEvent;
 import windeath44.orchestration.domain.model.MemorialBowedEvent;
 import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.model.RemainTokenDecreaseEvent;
+import windeath44.orchestration.domain.model.RemainTokenIncreaseEvent;
 import windeath44.orchestration.domain.model.type.EventType;
 import windeath44.server.memorial.avro.MemorialBowedAvroSchema;
 
@@ -142,6 +144,19 @@ public class EventMapper {
             .aggregateType(aggregateType)
             .eventType(eventType)
             .eventData(memorialBowedAvroSchema)
+            .build();
+  }
+
+  public RemainTokenIncreaseEvent remainTokenIncreaseResponse(RemainTokenIncreaseResponse remainTokenIncreaseResponse) {
+    String aggregateId = "remain-token-increase-" + remainTokenIncreaseResponse.getUserId();
+    String aggregateType = "REMAIN_TOKEN_INCREASE";
+    EventType eventType = EventType.REMAIN_TOKEN_INCREASE_RESPONSE;
+
+    return RemainTokenIncreaseEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(remainTokenIncreaseResponse)
             .build();
   }
 
