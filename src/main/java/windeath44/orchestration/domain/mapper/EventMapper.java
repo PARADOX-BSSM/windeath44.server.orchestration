@@ -160,4 +160,17 @@ public class EventMapper {
             .build();
   }
 
+  public RemainTokenIncreaseEvent remainTokenIncreaseFailResponse(RemainTokenIncreaseResponse remainTokenIncreaseResponse) {
+    String aggregateId = "remain-token-increase-" + remainTokenIncreaseResponse.getUserId();
+    String aggregateType = "REMAIN_TOKEN_INCREASE";
+    EventType eventType = EventType.REMAIN_TOKEN_INCREASE_FAIL_RESPONSE;
+
+    return RemainTokenIncreaseEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(remainTokenIncreaseResponse)
+            .build();
+  }
+
 }
