@@ -1,17 +1,17 @@
 package windeath44.orchestration.domain.mapper;
 
 import com.chatbot.events.ChatEvent;
-import com.example.avro.CharacterAvroSchema;
 import com.example.avro.MemorialApplicationAvroSchema;
 import com.example.avro.MemorialAvroSchema;
 import org.springframework.stereotype.Component;
 import com.example.user.avro.RemainTokenDecreaseResponse;
 import windeath44.orchestration.domain.model.ChatbotChatEvent;
-import windeath44.orchestration.domain.model.CharacterEvent;
 import windeath44.orchestration.domain.model.MemorialApplicationEvent;
+import windeath44.orchestration.domain.model.MemorialBowedEvent;
 import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.model.RemainTokenDecreaseEvent;
 import windeath44.orchestration.domain.model.type.EventType;
+import windeath44.server.memorial.avro.MemorialBowedAvroSchema;
 
 @Component
 public class EventMapper {
@@ -129,6 +129,19 @@ public class EventMapper {
             .aggregateType(aggregateType)
             .eventType(eventType)
             .eventData(remainTokenDecreaseResponse)
+            .build();
+  }
+
+  public MemorialBowedEvent memorialBowedEvent(MemorialBowedAvroSchema memorialBowedAvroSchema) {
+    String aggregateId = "memorial-bowed-" + memorialBowedAvroSchema.getMemorialId();
+    String aggregateType = "MEMORIAL_BOWED";
+    EventType eventType = EventType.MEMORIAL_BOWED;
+
+    return MemorialBowedEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(memorialBowedAvroSchema)
             .build();
   }
 
