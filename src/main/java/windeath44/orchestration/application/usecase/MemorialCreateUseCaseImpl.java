@@ -1,6 +1,5 @@
 package windeath44.orchestration.application.usecase;
 
-import com.example.avro.MemorialApplicationAvroSchema;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +9,7 @@ import windeath44.orchestration.domain.model.MemorialApplicationEvent;
 import windeath44.orchestration.domain.model.type.MemorialAction;
 import windeath44.orchestration.domain.port.in.MemorialCreateUseCase;
 import windeath44.orchestration.domain.repository.EventRepository;
+import windeath44.server.application.avro.MemorialApplicationAvroSchema;
 
 @Component
 @RequiredArgsConstructor

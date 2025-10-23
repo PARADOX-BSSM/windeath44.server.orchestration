@@ -1,6 +1,5 @@
 package windeath44.orchestration.application.service;
 
-import com.example.avro.MemorialApplicationAvroSchema;
 import lombok.RequiredArgsConstructor;
 
 import org.apache.avro.specific.SpecificRecord;

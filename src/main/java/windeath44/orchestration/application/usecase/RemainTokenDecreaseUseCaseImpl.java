@@ -1,6 +1,5 @@
 package windeath44.orchestration.application.usecase;
 
-import com.chatbot.events.ChatEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +8,7 @@ import windeath44.orchestration.domain.model.ChatbotChatEvent;
 import windeath44.orchestration.domain.port.in.RemainTokenDecreaseUseCase;
 import windeath44.orchestration.domain.repository.EventRepository;
 import windeath44.orchestration.global.kafka.KafkaProducer;
+import windeath44.server.chatbot.avro.ChatEvent;
 
 @Component
 @RequiredArgsConstructor

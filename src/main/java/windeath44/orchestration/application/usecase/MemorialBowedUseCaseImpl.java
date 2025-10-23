@@ -20,12 +20,9 @@ public class MemorialBowedUseCaseImpl implements MemorialBowedUseCase {
     @Override
     @Transactional
     public void execute(MemorialBowedAvroSchema memorialBowedAvroSchema) {
-        // 이벤트 저장
+        remainTokenIncreaseService.execute(memorialBowedAvroSchema);
         MemorialBowedEvent memorialBowedEvent = eventMapper.memorialBowedEvent(memorialBowedAvroSchema);
         eventRepository.save(memorialBowedEvent);
-
-        // RemainTokenIncreaseRequest 생성 및 발행
-        remainTokenIncreaseService.execute(memorialBowedAvroSchema);
     }
 }
 

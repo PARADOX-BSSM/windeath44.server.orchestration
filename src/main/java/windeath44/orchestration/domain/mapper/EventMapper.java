@@ -1,10 +1,6 @@
 package windeath44.orchestration.domain.mapper;
 
-import com.chatbot.events.ChatEvent;
-import com.example.avro.MemorialApplicationAvroSchema;
-import com.example.avro.MemorialAvroSchema;
 import org.springframework.stereotype.Component;
-import com.example.user.avro.RemainTokenDecreaseResponse;
 import com.example.user.avro.RemainTokenIncreaseResponse;
 import windeath44.orchestration.domain.model.ChatbotChatEvent;
 import windeath44.orchestration.domain.model.MemorialApplicationEvent;
@@ -13,7 +9,11 @@ import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.model.RemainTokenDecreaseEvent;
 import windeath44.orchestration.domain.model.RemainTokenIncreaseEvent;
 import windeath44.orchestration.domain.model.type.EventType;
+import windeath44.server.application.avro.MemorialApplicationAvroSchema;
+import windeath44.server.chatbot.avro.ChatEvent;
+import windeath44.server.memorial.avro.MemorialAvroSchema;
 import windeath44.server.memorial.avro.MemorialBowedAvroSchema;
+import windeath44.server.user.avro.RemainTokenDecreaseResponse;
 
 @Component
 public class EventMapper {

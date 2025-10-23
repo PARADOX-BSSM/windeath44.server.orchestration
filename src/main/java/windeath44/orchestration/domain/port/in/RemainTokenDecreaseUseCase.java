@@ -1,6 +1,7 @@
 package windeath44.orchestration.domain.port.in;
 
-import com.chatbot.events.ChatEvent;
+
+import windeath44.server.chatbot.avro.ChatEvent;
 
 public interface RemainTokenDecreaseUseCase {
     void  execute(ChatEvent chatEvent);
