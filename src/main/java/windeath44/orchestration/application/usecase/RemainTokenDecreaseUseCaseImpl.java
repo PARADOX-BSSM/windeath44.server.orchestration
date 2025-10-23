@@ -8,7 +8,7 @@ import windeath44.orchestration.domain.mapper.EventMapper;
 import windeath44.orchestration.domain.model.ChatbotChatEvent;
 import windeath44.orchestration.domain.port.in.RemainTokenDecreaseUseCase;
 import windeath44.orchestration.domain.repository.EventRepository;
-import windeath44.server.chatbot.avro.ChatEvent;
+import windeath44.server.chatbot.avro.ChatAvroSchema;
 
 @Component
 @RequiredArgsConstructor
@@ -19,12 +19,12 @@ public class RemainTokenDecreaseUseCaseImpl implements RemainTokenDecreaseUseCas
 
     @Override
     @Transactional
-    public void execute(ChatEvent chatEvent) {
+    public void execute(ChatAvroSchema chatAvroSchema) {
         // 이벤트 저장
-        ChatbotChatEvent chatbotChatEvent = eventMapper.chatEvent(chatEvent);
+        ChatbotChatEvent chatbotChatEvent = eventMapper.chatEvent(chatAvroSchema);
         eventRepository.save(chatbotChatEvent);
 
         // remain-token-decrease-request 이벤트 발행
-        remainTokenDecreaseService.execute(chatEvent);
+        remainTokenDecreaseService.execute(chatAvroSchema);
     }
 }

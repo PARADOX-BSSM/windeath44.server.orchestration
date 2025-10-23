@@ -1,7 +1,6 @@
 package windeath44.orchestration.domain.mapper;
 
 import org.springframework.stereotype.Component;
-import com.example.user.avro.RemainTokenIncreaseResponse;
 import windeath44.orchestration.domain.model.ChatbotChatEvent;
 import windeath44.orchestration.domain.model.MemorialApplicationEvent;
 import windeath44.orchestration.domain.model.MemorialBowedEvent;
@@ -10,10 +9,11 @@ import windeath44.orchestration.domain.model.RemainTokenDecreaseEvent;
 import windeath44.orchestration.domain.model.RemainTokenIncreaseEvent;
 import windeath44.orchestration.domain.model.type.EventType;
 import windeath44.server.application.avro.MemorialApplicationAvroSchema;
-import windeath44.server.chatbot.avro.ChatEvent;
+import windeath44.server.chatbot.avro.ChatAvroSchema;
 import windeath44.server.memorial.avro.MemorialAvroSchema;
 import windeath44.server.memorial.avro.MemorialBowedAvroSchema;
 import windeath44.server.user.avro.RemainTokenDecreaseResponse;
+import windeath44.server.user.avro.RemainTokenIncreaseResponse;
 
 @Component
 public class EventMapper {
@@ -69,8 +69,8 @@ public class EventMapper {
             .build();
   }
 
-  public ChatbotChatEvent chatEvent(ChatEvent chatEvent) {
-    String aggregateId = "chatbot-chat-" + chatEvent.getChatbotId() + "-" + chatEvent.getSessionId();
+  public ChatbotChatEvent chatEvent(ChatAvroSchema chatAvroSchema) {
+    String aggregateId = "chatbot-chat-" + chatAvroSchema.getChatbotId() + "-" + chatAvroSchema.getSessionId();
     String aggregateType = "CHATBOT_CHAT";
     EventType eventType = EventType.CHATBOT_CHAT_REQUEST;
 
@@ -78,12 +78,12 @@ public class EventMapper {
             .aggregateId(aggregateId)
             .aggregateType(aggregateType)
             .eventType(eventType)
-            .eventData(chatEvent)
+            .eventData(chatAvroSchema)
             .build();
   }
 
-  public ChatbotChatEvent chatEventSuccessResponse(ChatEvent chatEvent) {
-    String aggregateId = "chatbot-chat-" + chatEvent.getChatbotId() + "-" + chatEvent.getSessionId();
+  public ChatbotChatEvent chatEventSuccessResponse(ChatAvroSchema chatAvroSchema) {
+    String aggregateId = "chatbot-chat-" + chatAvroSchema.getChatbotId() + "-" + chatAvroSchema.getSessionId();
     String aggregateType = "CHATBOT_CHAT";
     EventType eventType = EventType.REMAIN_TOKEN_DECREASE_RESPONSE;
 
@@ -91,12 +91,12 @@ public class EventMapper {
             .aggregateId(aggregateId)
             .aggregateType(aggregateType)
             .eventType(eventType)
-            .eventData(chatEvent)
+            .eventData(chatAvroSchema)
             .build();
   }
 
-  public ChatbotChatEvent chatEventFailResponse(ChatEvent chatEvent) {
-    String aggregateId = "chatbot-chat-" + chatEvent.getChatbotId() + "-" + chatEvent.getSessionId();
+  public ChatbotChatEvent chatEventFailResponse(ChatAvroSchema chatAvroSchema) {
+    String aggregateId = "chatbot-chat-" + chatAvroSchema.getChatbotId() + "-" + chatAvroSchema.getSessionId();
     String aggregateType = "CHATBOT_CHAT";
     EventType eventType = EventType.REMAIN_TOKEN_DECREASE_FAIL_RESPONSE;
 
@@ -104,7 +104,7 @@ public class EventMapper {
             .aggregateId(aggregateId)
             .aggregateType(aggregateType)
             .eventType(eventType)
-            .eventData(chatEvent)
+            .eventData(chatAvroSchema)
             .build();
   }
 
