@@ -1,17 +1,19 @@
 package windeath44.orchestration.domain.mapper;
 
-import com.chatbot.events.ChatEvent;
-import com.example.avro.CharacterAvroSchema;
-import com.example.avro.MemorialApplicationAvroSchema;
-import com.example.avro.MemorialAvroSchema;
 import org.springframework.stereotype.Component;
-import com.example.user.avro.RemainTokenDecreaseResponse;
 import windeath44.orchestration.domain.model.ChatbotChatEvent;
-import windeath44.orchestration.domain.model.CharacterEvent;
 import windeath44.orchestration.domain.model.MemorialApplicationEvent;
+import windeath44.orchestration.domain.model.MemorialBowedEvent;
 import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.model.RemainTokenDecreaseEvent;
+import windeath44.orchestration.domain.model.RemainTokenIncreaseEvent;
 import windeath44.orchestration.domain.model.type.EventType;
+import windeath44.server.application.avro.MemorialApplicationAvroSchema;
+import windeath44.server.chatbot.avro.ChatAvroSchema;
+import windeath44.server.memorial.avro.MemorialAvroSchema;
+import windeath44.server.memorial.avro.MemorialBowedAvroSchema;
+import windeath44.server.user.avro.RemainTokenDecreaseResponse;
+import windeath44.server.user.avro.RemainTokenIncreaseResponse;
 
 @Component
 public class EventMapper {
@@ -67,8 +69,8 @@ public class EventMapper {
             .build();
   }
 
-  public ChatbotChatEvent chatEvent(ChatEvent chatEvent) {
-    String aggregateId = "chatbot-chat-" + chatEvent.getChatbotId() + "-" + chatEvent.getSessionId();
+  public ChatbotChatEvent chatEvent(ChatAvroSchema chatAvroSchema) {
+    String aggregateId = "chatbot-chat-" + chatAvroSchema.getChatbotId() + "-" + chatAvroSchema.getSessionId();
     String aggregateType = "CHATBOT_CHAT";
     EventType eventType = EventType.CHATBOT_CHAT_REQUEST;
 
@@ -76,12 +78,12 @@ public class EventMapper {
             .aggregateId(aggregateId)
             .aggregateType(aggregateType)
             .eventType(eventType)
-            .eventData(chatEvent)
+            .eventData(chatAvroSchema)
             .build();
   }
 
-  public ChatbotChatEvent chatEventSuccessResponse(ChatEvent chatEvent) {
-    String aggregateId = "chatbot-chat-" + chatEvent.getChatbotId() + "-" + chatEvent.getSessionId();
+  public ChatbotChatEvent chatEventSuccessResponse(ChatAvroSchema chatAvroSchema) {
+    String aggregateId = "chatbot-chat-" + chatAvroSchema.getChatbotId() + "-" + chatAvroSchema.getSessionId();
     String aggregateType = "CHATBOT_CHAT";
     EventType eventType = EventType.REMAIN_TOKEN_DECREASE_RESPONSE;
 
@@ -89,12 +91,12 @@ public class EventMapper {
             .aggregateId(aggregateId)
             .aggregateType(aggregateType)
             .eventType(eventType)
-            .eventData(chatEvent)
+            .eventData(chatAvroSchema)
             .build();
   }
 
-  public ChatbotChatEvent chatEventFailResponse(ChatEvent chatEvent) {
-    String aggregateId = "chatbot-chat-" + chatEvent.getChatbotId() + "-" + chatEvent.getSessionId();
+  public ChatbotChatEvent chatEventFailResponse(ChatAvroSchema chatAvroSchema) {
+    String aggregateId = "chatbot-chat-" + chatAvroSchema.getChatbotId() + "-" + chatAvroSchema.getSessionId();
     String aggregateType = "CHATBOT_CHAT";
     EventType eventType = EventType.REMAIN_TOKEN_DECREASE_FAIL_RESPONSE;
 
@@ -102,7 +104,7 @@ public class EventMapper {
             .aggregateId(aggregateId)
             .aggregateType(aggregateType)
             .eventType(eventType)
-            .eventData(chatEvent)
+            .eventData(chatAvroSchema)
             .build();
   }
 
@@ -129,6 +131,45 @@ public class EventMapper {
             .aggregateType(aggregateType)
             .eventType(eventType)
             .eventData(remainTokenDecreaseResponse)
+            .build();
+  }
+
+  public MemorialBowedEvent memorialBowedEvent(MemorialBowedAvroSchema memorialBowedAvroSchema) {
+    String aggregateId = "memorial-bowed-" + memorialBowedAvroSchema.getMemorialId();
+    String aggregateType = "MEMORIAL_BOWED";
+    EventType eventType = EventType.MEMORIAL_BOWED;
+
+    return MemorialBowedEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(memorialBowedAvroSchema)
+            .build();
+  }
+
+  public RemainTokenIncreaseEvent remainTokenIncreaseResponse(RemainTokenIncreaseResponse remainTokenIncreaseResponse) {
+    String aggregateId = "remain-token-increase-" + remainTokenIncreaseResponse.getUserId();
+    String aggregateType = "REMAIN_TOKEN_INCREASE";
+    EventType eventType = EventType.REMAIN_TOKEN_INCREASE_RESPONSE;
+
+    return RemainTokenIncreaseEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(remainTokenIncreaseResponse)
+            .build();
+  }
+
+  public RemainTokenIncreaseEvent remainTokenIncreaseFailResponse(RemainTokenIncreaseResponse remainTokenIncreaseResponse) {
+    String aggregateId = "remain-token-increase-" + remainTokenIncreaseResponse.getUserId();
+    String aggregateType = "REMAIN_TOKEN_INCREASE";
+    EventType eventType = EventType.REMAIN_TOKEN_INCREASE_FAIL_RESPONSE;
+
+    return RemainTokenIncreaseEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(remainTokenIncreaseResponse)
             .build();
   }
 

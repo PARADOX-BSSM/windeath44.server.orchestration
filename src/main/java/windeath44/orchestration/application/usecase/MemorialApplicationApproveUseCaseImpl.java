@@ -1,16 +1,14 @@
 package windeath44.orchestration.application.usecase;
 
-import com.example.avro.CharacterAvroSchema;
-import com.example.avro.MemorialAvroSchema;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import windeath44.orchestration.application.service.MemorialApplicationService;
 import windeath44.orchestration.domain.mapper.EventMapper;
-import windeath44.orchestration.domain.model.CharacterEvent;
 import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.model.type.MemorialApplicationAction;
 import windeath44.orchestration.domain.port.in.MemorialApplicationApproveUseCase;
 import windeath44.orchestration.domain.repository.EventRepository;
+import windeath44.server.memorial.avro.MemorialAvroSchema;
 
 @Component
 @RequiredArgsConstructor

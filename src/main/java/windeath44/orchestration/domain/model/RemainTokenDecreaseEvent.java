@@ -1,7 +1,7 @@
 package windeath44.orchestration.domain.model;
 
-import com.example.user.avro.RemainTokenDecreaseResponse;
 import lombok.experimental.SuperBuilder;
+import windeath44.server.user.avro.RemainTokenDecreaseResponse;
 
 @SuperBuilder
 public class RemainTokenDecreaseEvent extends Event<RemainTokenDecreaseResponse> {
