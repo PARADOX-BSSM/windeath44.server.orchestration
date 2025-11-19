@@ -173,4 +173,17 @@ public class EventMapper {
             .build();
   }
 
+  public MemorialEvent memorialVectorDeleteResponse(MemorialAvroSchema memorialAvroSchema) {
+    String aggregateId = "memorial-vector-delete-" + memorialAvroSchema.getMemorialId();
+    String aggregateType = "MEMORIAL_VECTOR_DELETE";
+    EventType eventType = EventType.MEMORIAL_VECTOR_DELETE_RESPONSE;
+
+    return MemorialEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(memorialAvroSchema)
+            .build();
+  }
+
 }
