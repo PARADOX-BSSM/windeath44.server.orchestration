@@ -6,11 +6,13 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Topic {
-  CHARACTER_MEMORIALIZING("character-memorializing-request"),
   MEMORIAL_CREATION("memorial-creation-request"),
-  MEMORIAL_DELETION("memorial-deletion-request"),
   MEMORIAL_APPLICATION_CANCEL("memorial-application-cancel-request"),
-  MEMORIAL_APPLICATION_APPROVED("memorial-application-approved-response")
+  MEMORIAL_APPLICATION_APPROVED("memorial-application-approved-response"),
+  REMAIN_TOKEN_DECREASE("remain-token-decrease-request"),
+  REMAIN_TOKEN_INCREASE("remain-token-increase-request"),
+  MEMORIAL_VECTORIZING("memorial-vectorizing-request"),
+  MEMORIAL_VECTOR_DELETE("memorial-vector-delete-request")
   ;
 
 

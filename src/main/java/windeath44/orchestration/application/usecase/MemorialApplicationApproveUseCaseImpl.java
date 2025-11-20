@@ -1,14 +1,14 @@
 package windeath44.orchestration.application.usecase;
 
-import com.example.avro.CharacterAvroSchema;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import windeath44.orchestration.application.service.MemorialApplicationService;
 import windeath44.orchestration.domain.mapper.EventMapper;
-import windeath44.orchestration.domain.model.CharacterEvent;
+import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.model.type.MemorialApplicationAction;
 import windeath44.orchestration.domain.port.in.MemorialApplicationApproveUseCase;
 import windeath44.orchestration.domain.repository.EventRepository;
+import windeath44.server.memorial.avro.MemorialAvroSchema;
 
 @Component
 @RequiredArgsConstructor
@@ -18,9 +18,9 @@ public class MemorialApplicationApproveUseCaseImpl implements MemorialApplicatio
   private final MemorialApplicationService memorialApplicationService;
 
   @Override
-  public void execute(CharacterAvroSchema characterAvroSchema) {
-    memorialApplicationService.execute(MemorialApplicationAction.APPROVE, characterAvroSchema);
-    CharacterEvent characterEvent = eventMapper.characterEvent(characterAvroSchema);
-    eventRepository.save(characterEvent);
+  public void execute(MemorialAvroSchema memorialAvroSchema) {
+    memorialApplicationService.execute(MemorialApplicationAction.APPROVE, memorialAvroSchema);
+    MemorialEvent memorialEvent = eventMapper.memorialEvent(memorialAvroSchema);
+    eventRepository.save(memorialEvent);
   }
 }
