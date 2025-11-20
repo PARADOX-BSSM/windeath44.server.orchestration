@@ -4,12 +4,14 @@ import org.springframework.stereotype.Component;
 import windeath44.orchestration.domain.model.ChatbotChatEvent;
 import windeath44.orchestration.domain.model.MemorialApplicationEvent;
 import windeath44.orchestration.domain.model.MemorialBowedEvent;
+import windeath44.orchestration.domain.model.FeedEvent;
 import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.model.RemainTokenDecreaseEvent;
 import windeath44.orchestration.domain.model.RemainTokenIncreaseEvent;
 import windeath44.orchestration.domain.model.type.EventType;
 import windeath44.server.application.avro.MemorialApplicationAvroSchema;
 import windeath44.server.chatbot.avro.ChatAvroSchema;
+import windeath44.server.memorial.avro.FeedAvroSchema;
 import windeath44.server.memorial.avro.MemorialAvroSchema;
 import windeath44.server.memorial.avro.MemorialBowedAvroSchema;
 import windeath44.server.user.avro.RemainTokenDecreaseResponse;
@@ -183,6 +185,19 @@ public class EventMapper {
             .aggregateType(aggregateType)
             .eventType(eventType)
             .eventData(memorialAvroSchema)
+            .build();
+  }
+
+  public FeedEvent feedVectorizingResponse(FeedAvroSchema feedAvroSchema) {
+    String aggregateId = "feed-vectorizing-" + feedAvroSchema.getMemorialId();
+    String aggregateType = "FEED_VECTORIZING";
+    EventType eventType = EventType.MEMORIAL_VECTORIZING_RESPONSE;
+
+    return FeedEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(feedAvroSchema)
             .build();
   }
 
