@@ -2,18 +2,25 @@ package windeath44.orchestration.domain.mapper;
 
 import org.springframework.stereotype.Component;
 import windeath44.orchestration.domain.model.ChatbotChatEvent;
+import windeath44.orchestration.domain.model.ChatbotPossessedEvent;
 import windeath44.orchestration.domain.model.MemorialApplicationEvent;
 import windeath44.orchestration.domain.model.MemorialBowedEvent;
 import windeath44.orchestration.domain.model.FeedEvent;
 import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.model.RemainTokenDecreaseEvent;
 import windeath44.orchestration.domain.model.RemainTokenIncreaseEvent;
+import windeath44.orchestration.domain.model.MemorialCommentedEvent;
+import windeath44.orchestration.domain.model.MemorialUpdatedApplyEvent;
 import windeath44.orchestration.domain.model.type.EventType;
+import windeath44.server.application.avro.MemorialAppliedAvroSchema;
 import windeath44.server.application.avro.MemorialApplicationAvroSchema;
 import windeath44.server.chatbot.avro.ChatAvroSchema;
+import windeath44.server.chatbot.avro.ChatbotPossessedAvroSchema;
 import windeath44.server.memorial.avro.FeedAvroSchema;
 import windeath44.server.memorial.avro.MemorialAvroSchema;
 import windeath44.server.memorial.avro.MemorialBowedAvroSchema;
+import windeath44.server.memorial.avro.MemorialCommentedAvroSchema;
+import windeath44.server.memorial.avro.MemorialUpdatedApplyAvroSchema;
 import windeath44.server.user.avro.RemainTokenDecreaseResponse;
 import windeath44.server.user.avro.RemainTokenIncreaseResponse;
 
@@ -55,6 +62,32 @@ public class EventMapper {
             .aggregateType(aggregateType)
             .eventType(eventType)
             .eventData(memorialApplicationAvroSchema)
+            .build();
+  }
+
+  public MemorialApplicationEvent memorialApplicationApplyEvent(MemorialAppliedAvroSchema memorialAppliedAvroSchema) {
+    String aggregateId = "memorial-application-" + memorialAppliedAvroSchema.getMemorialApplicationId();
+    String aggregateType = "MEMORIAL_APPLICATION";
+    EventType eventType = EventType.MEMORIAL_APPLICATION_APPLIED;
+
+    return MemorialApplicationEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(memorialAppliedAvroSchema)
+            .build();
+  }
+
+  public MemorialUpdatedApplyEvent memorialApplicationApplyUpdatedEvent(MemorialUpdatedApplyAvroSchema memorialUpdatedApplyAvroSchema) {
+    String aggregateId = "memorial-application-" + memorialUpdatedApplyAvroSchema.getMemorialId();
+    String aggregateType = "MEMORIAL_APPLICATION";
+    EventType eventType = EventType.MEMORIAL_APPLICATION_APPLY_UPDATED;
+
+    return MemorialUpdatedApplyEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(memorialUpdatedApplyAvroSchema)
             .build();
   }
 
@@ -107,6 +140,19 @@ public class EventMapper {
             .aggregateType(aggregateType)
             .eventType(eventType)
             .eventData(chatAvroSchema)
+            .build();
+  }
+
+  public ChatbotPossessedEvent chatbotPossessedEvent(ChatbotPossessedAvroSchema chatbotPossessedAvroSchema) {
+    String aggregateId = "chatbot-possessed-" + chatbotPossessedAvroSchema.getChatbotId() + "-" + chatbotPossessedAvroSchema.getTalksetRequestId();
+    String aggregateType = "CHATBOT_POSSESSED";
+    EventType eventType = EventType.CHATBOT_POSSESSED;
+
+    return ChatbotPossessedEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(chatbotPossessedAvroSchema)
             .build();
   }
 
@@ -198,6 +244,19 @@ public class EventMapper {
             .aggregateType(aggregateType)
             .eventType(eventType)
             .eventData(feedAvroSchema)
+            .build();
+  }
+
+  public MemorialCommentedEvent memorialCommentedEvent(MemorialCommentedAvroSchema memorialCommentedAvroSchema) {
+    String aggregateId = "memorial-comment-" + memorialCommentedAvroSchema.getMemorialId();
+    String aggregateType = "MEMORIAL_COMMENT";
+    EventType eventType = EventType.MEMORIAL_COMMENTED;
+
+    return MemorialCommentedEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(memorialCommentedAvroSchema)
             .build();
   }
 

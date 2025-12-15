@@ -11,8 +11,14 @@ public enum Topic {
   MEMORIAL_APPLICATION_APPROVED("memorial-application-approved-response"),
   REMAIN_TOKEN_DECREASE("remain-token-decrease-request"),
   REMAIN_TOKEN_INCREASE("remain-token-increase-request"),
+  XP_INCREASE("xp-increase-request"),
   MEMORIAL_VECTORIZING("memorial-vectorizing-request"),
-  MEMORIAL_VECTOR_DELETE("memorial-vector-delete-request")
+  MEMORIAL_UPDATED("memorial-updated-request"),
+  MEMORIAL_VECTOR_DELETE("memorial-vector-delete-request"),
+  MEMORIAL_COMMENTED("memorial-commented-request"),
+  MEMORIAL_APPLY("memorial-apply-request"),
+  MEMORIAL_APPLY_UPDATED("memorial-updated-apply-request"),
+  CHATBOT_POSSESSED("chatbot-possessed-request")
   ;
 
 
