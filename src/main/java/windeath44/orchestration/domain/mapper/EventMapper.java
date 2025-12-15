@@ -8,6 +8,7 @@ import windeath44.orchestration.domain.model.FeedEvent;
 import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.model.RemainTokenDecreaseEvent;
 import windeath44.orchestration.domain.model.RemainTokenIncreaseEvent;
+import windeath44.orchestration.domain.model.XpIncreaseEvent;
 import windeath44.orchestration.domain.model.type.EventType;
 import windeath44.server.application.avro.MemorialApplicationAvroSchema;
 import windeath44.server.chatbot.avro.ChatAvroSchema;
@@ -16,6 +17,7 @@ import windeath44.server.memorial.avro.MemorialAvroSchema;
 import windeath44.server.memorial.avro.MemorialBowedAvroSchema;
 import windeath44.server.user.avro.RemainTokenDecreaseResponse;
 import windeath44.server.user.avro.RemainTokenIncreaseResponse;
+import windeath44.server.user.avro.XpIncreaseResponse;
 
 @Component
 public class EventMapper {
@@ -198,6 +200,19 @@ public class EventMapper {
             .aggregateType(aggregateType)
             .eventType(eventType)
             .eventData(feedAvroSchema)
+            .build();
+  }
+
+  public XpIncreaseEvent xpIncreaseResponse(XpIncreaseResponse xpIncreaseResponse) {
+    String aggregateId = "xp-increase-" + xpIncreaseResponse.getUserId();
+    String aggregateType = "XP_INCREASE";
+    EventType eventType = EventType.XP_INCREASE_RESPONSE;
+
+    return XpIncreaseEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(xpIncreaseResponse)
             .build();
   }
 
