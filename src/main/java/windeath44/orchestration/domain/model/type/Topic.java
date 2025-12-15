@@ -15,7 +15,8 @@ public enum Topic {
   MEMORIAL_VECTORIZING("memorial-vectorizing-request"),
   MEMORIAL_VECTOR_DELETE("memorial-vector-delete-request"),
   MEMORIAL_COMMENTED("memorial-commented-request"),
-  MEMORIAL_APPLY("memorial-apply-request")
+  MEMORIAL_APPLY("memorial-apply-request"),
+  MEMORIAL_APPLY_UPDATED("memorial-updated-apply-request")
   ;
 
 

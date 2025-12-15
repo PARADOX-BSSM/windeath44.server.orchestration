@@ -9,6 +9,7 @@ import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.model.RemainTokenDecreaseEvent;
 import windeath44.orchestration.domain.model.RemainTokenIncreaseEvent;
 import windeath44.orchestration.domain.model.MemorialCommentedEvent;
+import windeath44.orchestration.domain.model.MemorialUpdatedApplyEvent;
 import windeath44.orchestration.domain.model.type.EventType;
 import windeath44.server.application.avro.MemorialApplicationAvroSchema;
 import windeath44.server.chatbot.avro.ChatAvroSchema;
@@ -16,6 +17,7 @@ import windeath44.server.memorial.avro.FeedAvroSchema;
 import windeath44.server.memorial.avro.MemorialAvroSchema;
 import windeath44.server.memorial.avro.MemorialBowedAvroSchema;
 import windeath44.server.memorial.avro.MemorialCommentedAvroSchema;
+import windeath44.server.memorial.avro.MemorialUpdatedApplyAvroSchema;
 import windeath44.server.user.avro.RemainTokenDecreaseResponse;
 import windeath44.server.user.avro.RemainTokenIncreaseResponse;
 
@@ -70,6 +72,19 @@ public class EventMapper {
             .aggregateType(aggregateType)
             .eventType(eventType)
             .eventData(memorialApplicationAvroSchema)
+            .build();
+  }
+
+  public MemorialUpdatedApplyEvent memorialApplicationApplyUpdatedEvent(MemorialUpdatedApplyAvroSchema memorialUpdatedApplyAvroSchema) {
+    String aggregateId = "memorial-application-" + memorialUpdatedApplyAvroSchema.getMemorialId();
+    String aggregateType = "MEMORIAL_APPLICATION";
+    EventType eventType = EventType.MEMORIAL_APPLICATION_APPLY_UPDATED;
+
+    return MemorialUpdatedApplyEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(memorialUpdatedApplyAvroSchema)
             .build();
   }
 
