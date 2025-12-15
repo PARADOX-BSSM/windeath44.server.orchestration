@@ -30,6 +30,10 @@ public class XpIncreaseService {
         publish(userId, XpRewardType.MEMORIAL_APPLY_UPDATE);
     }
 
+    public void publishMemorialUpdateXp(String userId) {
+        publish(userId, XpRewardType.MEMORIAL_UPDATE);
+    }
+
     private void publish(String userId, XpRewardType rewardType) {
         XpIncreaseRequest request = xpMapper.toXpIncreaseRequest(
                 userId,
