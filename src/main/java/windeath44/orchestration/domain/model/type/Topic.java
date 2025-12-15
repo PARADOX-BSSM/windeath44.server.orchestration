@@ -13,7 +13,8 @@ public enum Topic {
   REMAIN_TOKEN_INCREASE("remain-token-increase-request"),
   XP_INCREASE("xp-increase-request"),
   MEMORIAL_VECTORIZING("memorial-vectorizing-request"),
-  MEMORIAL_VECTOR_DELETE("memorial-vector-delete-request")
+  MEMORIAL_VECTOR_DELETE("memorial-vector-delete-request"),
+  MEMORIAL_COMMENTED("memorial-commented-request")
   ;
 
 

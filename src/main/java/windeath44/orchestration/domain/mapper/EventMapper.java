@@ -8,12 +8,14 @@ import windeath44.orchestration.domain.model.FeedEvent;
 import windeath44.orchestration.domain.model.MemorialEvent;
 import windeath44.orchestration.domain.model.RemainTokenDecreaseEvent;
 import windeath44.orchestration.domain.model.RemainTokenIncreaseEvent;
+import windeath44.orchestration.domain.model.MemorialCommentedEvent;
 import windeath44.orchestration.domain.model.type.EventType;
 import windeath44.server.application.avro.MemorialApplicationAvroSchema;
 import windeath44.server.chatbot.avro.ChatAvroSchema;
 import windeath44.server.memorial.avro.FeedAvroSchema;
 import windeath44.server.memorial.avro.MemorialAvroSchema;
 import windeath44.server.memorial.avro.MemorialBowedAvroSchema;
+import windeath44.server.memorial.avro.MemorialCommentedAvroSchema;
 import windeath44.server.user.avro.RemainTokenDecreaseResponse;
 import windeath44.server.user.avro.RemainTokenIncreaseResponse;
 
@@ -198,6 +200,19 @@ public class EventMapper {
             .aggregateType(aggregateType)
             .eventType(eventType)
             .eventData(feedAvroSchema)
+            .build();
+  }
+
+  public MemorialCommentedEvent memorialCommentedEvent(MemorialCommentedAvroSchema memorialCommentedAvroSchema) {
+    String aggregateId = "memorial-comment-" + memorialCommentedAvroSchema.getMemorialId();
+    String aggregateType = "MEMORIAL_COMMENT";
+    EventType eventType = EventType.MEMORIAL_COMMENTED;
+
+    return MemorialCommentedEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(memorialCommentedAvroSchema)
             .build();
   }
 

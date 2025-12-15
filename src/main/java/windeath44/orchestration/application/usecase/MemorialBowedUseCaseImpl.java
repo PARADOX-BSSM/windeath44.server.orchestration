@@ -9,13 +9,13 @@ import windeath44.orchestration.domain.mapper.EventMapper;
 import windeath44.orchestration.domain.model.Event;
 import windeath44.orchestration.domain.model.MemorialBowedEvent;
 import windeath44.orchestration.domain.model.type.EventType;
+import windeath44.orchestration.domain.model.type.XpRewardType;
 import windeath44.orchestration.domain.port.in.MemorialBowedUseCase;
 import windeath44.orchestration.domain.repository.EventRepository;
 import windeath44.server.memorial.avro.MemorialBowedAvroSchema;
 import windeath44.server.user.avro.XpIncreaseResponse;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -40,7 +40,7 @@ public class MemorialBowedUseCaseImpl implements MemorialBowedUseCase {
             return;
         }
 
-        String aggregateId = "xp-increase-" + userId;
+        String aggregateId = XpRewardType.MEMORIAL_BOW.aggregateId(userId);
         LocalDateTime oneDayAgo = LocalDateTime.now().minusDays(1);
         Optional<Event> latestXpEvent = eventRepository.findFirstByAggregateIdAndEventTypeOrderByOccurredAtDesc(
                 aggregateId, EventType.XP_INCREASE_RESPONSE

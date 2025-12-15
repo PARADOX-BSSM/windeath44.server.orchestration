@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "MemorialCommentedAvroSchema",
+  "namespace": "windeath44.server.memorial.avro",
+  "doc": "추모글 댓글 작성 이벤트 스키마",
+  "fields": [
+    {"name": "memorialId", "type": "long", "doc": "추모글 ID"},
+    {"name": "commentId", "type": "long", "doc": "댓글 ID"},
+    {"name": "commenterId", "type": "string", "doc": "댓글 작성자 ID"},
+    {"name": "content", "type": "string", "doc": "댓글 내용"}
+  ]
+}
