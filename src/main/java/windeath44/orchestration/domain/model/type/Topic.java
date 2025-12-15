@@ -14,7 +14,8 @@ public enum Topic {
   XP_INCREASE("xp-increase-request"),
   MEMORIAL_VECTORIZING("memorial-vectorizing-request"),
   MEMORIAL_VECTOR_DELETE("memorial-vector-delete-request"),
-  MEMORIAL_COMMENTED("memorial-commented-request")
+  MEMORIAL_COMMENTED("memorial-commented-request"),
+  MEMORIAL_APPLY("memorial-apply-request")
   ;
 
 

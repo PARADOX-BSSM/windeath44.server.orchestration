@@ -9,7 +9,8 @@ import java.util.UUID;
 @Getter
 public enum XpRewardType {
     MEMORIAL_BOW("memorial-bow", "memorial_bow", 20L),
-    MEMORIAL_COMMENT("memorial-comment", "memorial_comment", 30L);
+    MEMORIAL_COMMENT("memorial-comment", "memorial_comment", 30L),
+    MEMORIAL_APPLY("memorial-apply", "memorial_apply", 1000L);
 
     private final String requestKey;
     private final String source;

@@ -60,6 +60,19 @@ public class EventMapper {
             .build();
   }
 
+  public MemorialApplicationEvent memorialApplicationApplyEvent(MemorialApplicationAvroSchema memorialApplicationAvroSchema) {
+    String aggregateId = "memorial-application-" + memorialApplicationAvroSchema.getMemorialApplicationId();
+    String aggregateType = "MEMORIAL_APPLICATION";
+    EventType eventType = EventType.MEMORIAL_APPLICATION_APPLIED;
+
+    return MemorialApplicationEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(memorialApplicationAvroSchema)
+            .build();
+  }
+
   public MemorialApplicationEvent memorialApplicationCompensateEvent(MemorialApplicationAvroSchema memorialAvroSchema) {
     String aggregateId = "memorial-application-" + memorialAvroSchema.getMemorialApplicationId();
     String aggregateType = "MEMORIAL_APPLICATION";

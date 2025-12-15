@@ -22,6 +22,10 @@ public class XpIncreaseService {
         publish(userId, XpRewardType.MEMORIAL_COMMENT);
     }
 
+    public void publishApplyXp(String userId) {
+        publish(userId, XpRewardType.MEMORIAL_APPLY);
+    }
+
     private void publish(String userId, XpRewardType rewardType) {
         XpIncreaseRequest request = xpMapper.toXpIncreaseRequest(
                 userId,
