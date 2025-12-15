@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import windeath44.orchestration.application.service.MemorialService;
+import windeath44.orchestration.application.service.XpIncreaseService;
 import windeath44.orchestration.domain.mapper.EventMapper;
 import windeath44.orchestration.domain.model.MemorialApplicationEvent;
 import windeath44.orchestration.domain.model.type.MemorialAction;
@@ -15,6 +16,7 @@ import windeath44.server.application.avro.MemorialApplicationAvroSchema;
 @RequiredArgsConstructor
 public class MemorialCreateUseCaseImpl implements MemorialCreateUseCase {
   private final MemorialService memorialService;
+  private final XpIncreaseService xpIncreaseService;
   private final EventMapper eventMapper;
   private final EventRepository eventRepository;
 
@@ -25,5 +27,13 @@ public class MemorialCreateUseCaseImpl implements MemorialCreateUseCase {
     memorialService.execute(MemorialAction.CREATE, memorialApplicationAvroSchema);
     MemorialApplicationEvent memorialEvent = eventMapper.memorialApplicationEvent(memorialApplicationAvroSchema);
     eventRepository.save(memorialEvent);
+    publishXpIncrease(memorialApplicationAvroSchema.getApplicantId());
+  }
+
+  private void publishXpIncrease(String userId) {
+    if (userId == null || userId.isBlank()) {
+      return;
+    }
+    xpIncreaseService.publishMemorialApprovedXp(userId);
   }
 }
