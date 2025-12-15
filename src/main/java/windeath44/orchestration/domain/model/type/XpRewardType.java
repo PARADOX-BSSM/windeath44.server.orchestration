@@ -13,7 +13,8 @@ public enum XpRewardType {
     MEMORIAL_APPLY("memorial-apply", "memorial_apply", 1000L),
     MEMORIAL_APPLY_UPDATE("memorial-apply-update", "memorial_apply_update", 300L),
     MEMORIAL_UPDATE("memorial-update", "memorial_update", 2000L),
-    MEMORIAL_APPROVED("memorial-approved", "memorial_approved", 9000L);
+    MEMORIAL_APPROVED("memorial-approved", "memorial_approved", 9000L),
+    CHATBOT_POSSESSED("chatbot-possessed", "chatbot_possessed", 5000L);
 
     private final String requestKey;
     private final String source;

@@ -32,5 +32,7 @@ public enum EventType {
 
   XP_INCREASE_RESPONSE,
 
+  CHATBOT_POSSESSED,
+
   MEMORIAL_COMMENTED;
 }

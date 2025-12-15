@@ -2,6 +2,7 @@ package windeath44.orchestration.domain.mapper;
 
 import org.springframework.stereotype.Component;
 import windeath44.orchestration.domain.model.ChatbotChatEvent;
+import windeath44.orchestration.domain.model.ChatbotPossessedEvent;
 import windeath44.orchestration.domain.model.MemorialApplicationEvent;
 import windeath44.orchestration.domain.model.MemorialBowedEvent;
 import windeath44.orchestration.domain.model.FeedEvent;
@@ -14,6 +15,7 @@ import windeath44.orchestration.domain.model.type.EventType;
 import windeath44.server.application.avro.MemorialAppliedAvroSchema;
 import windeath44.server.application.avro.MemorialApplicationAvroSchema;
 import windeath44.server.chatbot.avro.ChatAvroSchema;
+import windeath44.server.chatbot.avro.ChatbotPossessedAvroSchema;
 import windeath44.server.memorial.avro.FeedAvroSchema;
 import windeath44.server.memorial.avro.MemorialAvroSchema;
 import windeath44.server.memorial.avro.MemorialBowedAvroSchema;
@@ -138,6 +140,19 @@ public class EventMapper {
             .aggregateType(aggregateType)
             .eventType(eventType)
             .eventData(chatAvroSchema)
+            .build();
+  }
+
+  public ChatbotPossessedEvent chatbotPossessedEvent(ChatbotPossessedAvroSchema chatbotPossessedAvroSchema) {
+    String aggregateId = "chatbot-possessed-" + chatbotPossessedAvroSchema.getChatbotId() + "-" + chatbotPossessedAvroSchema.getTalksetRequestId();
+    String aggregateType = "CHATBOT_POSSESSED";
+    EventType eventType = EventType.CHATBOT_POSSESSED;
+
+    return ChatbotPossessedEvent.builder()
+            .aggregateId(aggregateId)
+            .aggregateType(aggregateType)
+            .eventType(eventType)
+            .eventData(chatbotPossessedAvroSchema)
             .build();
   }
 

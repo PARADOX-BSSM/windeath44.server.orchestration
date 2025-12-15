@@ -38,6 +38,10 @@ public class XpIncreaseService {
         publish(userId, XpRewardType.MEMORIAL_APPROVED);
     }
 
+    public void publishChatbotPossessedXp(String userId) {
+        publish(userId, XpRewardType.CHATBOT_POSSESSED);
+    }
+
     private void publish(String userId, XpRewardType rewardType) {
         XpIncreaseRequest request = xpMapper.toXpIncreaseRequest(
                 userId,
