@@ -11,7 +11,7 @@ import windeath44.orchestration.domain.model.type.EventType;
 import windeath44.orchestration.domain.model.type.XpRewardType;
 import windeath44.orchestration.domain.port.in.MemorialApplyUseCase;
 import windeath44.orchestration.domain.repository.EventRepository;
-import windeath44.server.application.avro.MemorialApplicationAvroSchema;
+import windeath44.server.application.avro.MemorialAppliedAvroSchema;
 import windeath44.server.user.avro.XpIncreaseResponse;
 
 import java.time.LocalDateTime;
@@ -26,9 +26,9 @@ public class MemorialApplyUseCaseImpl implements MemorialApplyUseCase {
 
     @Override
     @Transactional
-    public void execute(MemorialApplicationAvroSchema memorialApplicationAvroSchema) {
-        publishXpIncreaseIfNeeded(memorialApplicationAvroSchema.getApplicantId());
-        MemorialApplicationEvent memorialApplicationEvent = eventMapper.memorialApplicationApplyEvent(memorialApplicationAvroSchema);
+    public void execute(MemorialAppliedAvroSchema memorialAppliedAvroSchema) {
+        publishXpIncreaseIfNeeded(memorialAppliedAvroSchema.getApplicantId());
+        MemorialApplicationEvent memorialApplicationEvent = eventMapper.memorialApplicationApplyEvent(memorialAppliedAvroSchema);
         eventRepository.save(memorialApplicationEvent);
     }
 

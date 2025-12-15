@@ -20,11 +20,9 @@ public class MemorialUpdatedUseCaseImpl implements MemorialUpdatedUseCase {
     @Override
     @Transactional
     public void execute(MemorialAvroSchema memorialAvroSchema) {
-        // 이벤트 저장
         MemorialEvent memorialEvent = eventMapper.memorialEvent(memorialAvroSchema);
         eventRepository.save(memorialEvent);
 
-        // memorial-vectorizing-request 이벤트 발행
         memorialVectorizingService.execute(memorialAvroSchema);
     }
 }

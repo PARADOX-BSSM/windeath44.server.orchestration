@@ -1,7 +1,7 @@
 package windeath44.orchestration.domain.port.in;
 
-import windeath44.server.application.avro.MemorialApplicationAvroSchema;
+import windeath44.server.application.avro.MemorialAppliedAvroSchema;
 
 public interface MemorialApplyUseCase {
-    void execute(MemorialApplicationAvroSchema memorialApplicationAvroSchema);
+    void execute(MemorialAppliedAvroSchema memorialAppliedAvroSchema);
 }

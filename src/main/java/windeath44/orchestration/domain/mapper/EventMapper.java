@@ -11,6 +11,7 @@ import windeath44.orchestration.domain.model.RemainTokenIncreaseEvent;
 import windeath44.orchestration.domain.model.MemorialCommentedEvent;
 import windeath44.orchestration.domain.model.MemorialUpdatedApplyEvent;
 import windeath44.orchestration.domain.model.type.EventType;
+import windeath44.server.application.avro.MemorialAppliedAvroSchema;
 import windeath44.server.application.avro.MemorialApplicationAvroSchema;
 import windeath44.server.chatbot.avro.ChatAvroSchema;
 import windeath44.server.memorial.avro.FeedAvroSchema;
@@ -62,8 +63,8 @@ public class EventMapper {
             .build();
   }
 
-  public MemorialApplicationEvent memorialApplicationApplyEvent(MemorialApplicationAvroSchema memorialApplicationAvroSchema) {
-    String aggregateId = "memorial-application-" + memorialApplicationAvroSchema.getMemorialApplicationId();
+  public MemorialApplicationEvent memorialApplicationApplyEvent(MemorialAppliedAvroSchema memorialAppliedAvroSchema) {
+    String aggregateId = "memorial-application-" + memorialAppliedAvroSchema.getMemorialApplicationId();
     String aggregateType = "MEMORIAL_APPLICATION";
     EventType eventType = EventType.MEMORIAL_APPLICATION_APPLIED;
 
@@ -71,7 +72,7 @@ public class EventMapper {
             .aggregateId(aggregateId)
             .aggregateType(aggregateType)
             .eventType(eventType)
-            .eventData(memorialApplicationAvroSchema)
+            .eventData(memorialAppliedAvroSchema)
             .build();
   }
 
