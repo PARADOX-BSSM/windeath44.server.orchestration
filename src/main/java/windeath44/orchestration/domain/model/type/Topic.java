@@ -11,6 +11,7 @@ public enum Topic {
   MEMORIAL_APPLICATION_APPROVED("memorial-application-approved-response"),
   REMAIN_TOKEN_DECREASE("remain-token-decrease-request"),
   REMAIN_TOKEN_INCREASE("remain-token-increase-request"),
+  XP_INCREASE("xp-increase-request"),
   MEMORIAL_VECTORIZING("memorial-vectorizing-request"),
   MEMORIAL_VECTOR_DELETE("memorial-vector-delete-request")
   ;

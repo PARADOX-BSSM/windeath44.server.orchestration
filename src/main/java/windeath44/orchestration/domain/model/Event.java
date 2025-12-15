@@ -1,6 +1,9 @@
 package windeath44.orchestration.domain.model;
 
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
@@ -12,6 +15,8 @@ import java.time.LocalDateTime;
 
 @Document(collection = "events")
 @SuperBuilder
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class Event<T> {
   @Id
   private String eventId;
